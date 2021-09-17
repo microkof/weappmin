@@ -1,6 +1,6 @@
 {
   "name": "weappmin",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "一款为压缩小程序容量而生的小程序代码精简压缩器",
   "publishConfig": {
     "access": "public",
