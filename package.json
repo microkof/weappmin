@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@vant/weapp": "^1.8.5",
+    "iview-weapp": "^2.0.0",
+    "kai-ui": "^1.2.4",
+    "mitoo-weapp": "^0.1.1",
+    "wuss-weapp": "^2.3.3",
+    "wux-weapp": "^3.8.8"
+  }
+}

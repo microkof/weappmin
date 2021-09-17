@@ -1,0 +1,78 @@
+#!/usr/bin/env node
+
+const { green, yellow } = require('colorette');
+const checkEnv = require('../utils/checkEnv');
+const runVersion = require('../version/index');
+const runLite = require('../lite/index');
+const runMinifyUniapp = require('../un/index');
+const runMinifyImage = require('../image/index');
+const runHelp = require('../help/index');
+
+console.log(
+  green(
+    'weappmin v' +
+      require('../package.json').version +
+      ' For ' +
+      (checkEnv() === 'uni-app' ? 'uni-app 项目' : '原生项目') +
+      '\n'
+  )
+);
+
+// 版本
+if (process.argv.includes('-V') || process.argv.includes('--version')) {
+  runVersion();
+}
+// 精简
+else if (process.argv.includes('-L') || process.argv.includes('--lite')) {
+  runLite();
+}
+// 压缩 uni-app 的 unpackage
+else if (process.argv.includes('-U') || process.argv.includes('--un')) {
+  if (checkEnv() !== 'uni-app') {
+    console.log(yellow('\t压缩 uni-app 项目的 ./unpackage/ 下的文件功能仅限于 uni-app 项目使用。程序退出。'));
+    process.exit(1);
+  }
+  let ext = '.js';
+  if (process.argv.includes('--ext')) {
+    if (process.argv[process.argv.indexOf('--ext') + 1]) {
+      if (!/^\.(js|[a-z]{2}ss)(\,\.(js|[a-z]{2}ss))*$/.test(process.argv[process.argv.indexOf('--ext') + 1])) {
+        console.log(yellow('\t--ext 参数只限于 .js 和各家小程序平台的 CSS 文件。程序退出。'));
+        process.exit(1);
+      } else {
+        ext = process.argv[process.argv.indexOf('--ext') + 1];
+      }
+    }
+  }
+  let size = 100;
+  if (
+    process.argv.includes('--size') &&
+    process.argv[process.argv.indexOf('--size') + 1] &&
+    /^[1-9][0-9]*$/.test(process.argv[process.argv.indexOf('--size') + 1])
+  ) {
+    size = +process.argv[process.argv.indexOf('--size') + 1];
+  }
+  runMinifyUniapp(ext, size);
+}
+// 压缩图片
+else if (process.argv.includes('-I') || process.argv.includes('--image')) {
+  let dir = 'static';
+  if (process.argv.includes('--dir')) {
+    if (process.argv[process.argv.indexOf('--dir') + 1]) {
+      if (!/^(\.\/)?[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]+)*\/?$/.test(process.argv[process.argv.indexOf('--dir') + 1])) {
+        console.log(yellow('\t--dir 参数格式错误，正确格式举例：static 、 static/img。程序退出。'));
+        process.exit(1);
+      } else {
+        dir = process.argv[process.argv.indexOf('--dir') + 1];
+      }
+    }
+  }
+  runMinifyImage(dir);
+}
+// 帮助文档
+else if (process.argv.includes('-H') || process.argv.includes('--help')) {
+  runHelp();
+}
+// 默认
+else {
+  console.log('欢迎使用 weappmin，查看命令行帮助文档请输入 yarn weappmin -H');
+}
