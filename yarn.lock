@@ -3,9 +3,9 @@
 
 
 "@vant/weapp@^1.8.5":
-  version "1.8.5"
-  resolved "https://registry.nlark.com/@vant/weapp/download/@vant/weapp-1.8.5.tgz?cache=0&sync_timestamp=1631672212560&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vant%2Fweapp%2Fdownload%2F%40vant%2Fweapp-1.8.5.tgz#91edf5ff7fe692d41c3baeddefce7d86fddf341e"
-  integrity sha1-ke31/3/mktQcO67d7859hv3fNB4=
+  version "1.8.6"
+  resolved "https://registry.nlark.com/@vant/weapp/download/@vant/weapp-1.8.6.tgz#770630d10e7ebf9eb189aea1282a6a202d2aa451"
+  integrity sha1-dwYw0Q5+v56xia6hKCpqIC0qpFE=
 
 iview-weapp@^2.0.0:
   version "2.0.0"

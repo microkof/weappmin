@@ -28,7 +28,7 @@ A miniprogram reduction compressor.
 
 - 支持的操作系统：Windows、MacOS
 
-- 支持的开发模式：uni-app 小程序、原生小程序
+- 支持的开发模式：uni-app 小程序、原生小程序，**暂不支持 Taro，下个大版本开始支持**
 
 - 支持的第三方组件库（如有组件库提供 ES6 和 ES5 双版本的，只取 ES5 版本）：
 
